@@ -28,4 +28,4 @@ Client: Frontend
 
 ## Contributor
 
-Haoran
+[x] [Haoran]
