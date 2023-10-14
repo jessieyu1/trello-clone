@@ -25,4 +25,8 @@ Client: Frontend
 ## Demo
 
 ## Contributors
+
+- [x] [Jessie Yu]
+- [x] [Ocean Zou]
 - [x] [Michael Yuan]
+
