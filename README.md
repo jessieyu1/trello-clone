@@ -9,6 +9,7 @@ A Trello clone project is a web application that allows users to create and mana
 - MongoDB
 - Express
 
+
 # File Structure
 ```
 Server: Backend
