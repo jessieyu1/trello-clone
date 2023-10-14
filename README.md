@@ -26,6 +26,7 @@ Client: Frontend
 
 ## Demo
 
-## Contributor
+## Contributors
 
-[x] [Haoran]
+- [x] [Jessie Yu]
+- [x] [Haoran]
