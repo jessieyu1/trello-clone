@@ -24,4 +24,7 @@ Client: Frontend
 
 ## Demo
 
-ocean
+## Contributors
+
+- [x] [Jessie Yu]
+- [x] [Ocean Zou]
