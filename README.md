@@ -23,3 +23,7 @@ Client: Frontend
 - [x] User can create a list
 
 ## Demo
+
+## Contributors
+
+- [x] [Jessie Yu]
