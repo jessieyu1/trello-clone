@@ -27,3 +27,6 @@ Client: Frontend
 ## Contributors
 
 - [x] [Jessie Yu]
+- [x] [Ocean Zou]
+
+
