@@ -30,5 +30,5 @@ Client: Frontend
 - [x] [Ocean Zou]
 - [x] [Haoran Zhang]
 - [x] [Kathy Chen]
+- [x] [Eren Qu]
 - [x] [Bruce Deng]
-
