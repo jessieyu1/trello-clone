@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "## Description A Trello clone project is a web application that allows users to create and manage boards, lists, and cards. It is designed to help teams collaborate and organize their tasks and projects in a visual and intuitive way. Users can create boards for different projects, add lists to each board, and create cards within each list to represent tasks or items that need to be completed. They can also assign due dates, labels, and members to each card, and move them between lists as they progress through different stages of completion. The Trello clone project can be built using various web technologies such as React, Node.js, and MongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "pino": "^8.16.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.33.2"
+  }
+}
