@@ -23,3 +23,6 @@ Client: Frontend
 - [x] User can create a list
 
 ## Demo
+
+## Contributors
+  Finn Wu
