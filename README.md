@@ -23,3 +23,14 @@ Client: Frontend
 - [x] User can create a list
 
 ## Demo
+
+## Contributors
+- [x] [Finn Wu]
+- [x] [Ocean Zou]
+- [x] [Haoran Zhang]
+- [x] [Kathy Chen]
+- [x] [Eren Qu]
+- [x] [Bruce Deng]
+
+## Tutor 
+- [x] [Jessie Yu]
