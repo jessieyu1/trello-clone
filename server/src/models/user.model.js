@@ -1,15 +1,21 @@
 const { Schema, model } = require('mongoose')
 
-const cardSchema = new Schema({
-  title: String,
-  description: String,
-  list: {
-    type: Schema.Types.ObjectId,
-    ref: 'List',
+const userSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
     required: true,
   },
-  comments: [String],
-  attachments: [String],
+  name: String,
+  boards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Board',
+    },
+  ],
 })
-
-module.exports = model('Card', cardSchema)
+module.exports = model('User', userSchema)
