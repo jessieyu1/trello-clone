@@ -1,4 +1,4 @@
-const cardController = require('../../controllers/api/v1/cardController')
+const cardController = require('../../controllers/api/v1/card.controller')
 const express = require('express')
 const router = express.Router()
 

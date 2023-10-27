@@ -1,4 +1,4 @@
-const boardController = require('../../controllers/api/v1/boardController')
+const boardController = require('../../controllers/api/v1/board.controller')
 const express = require('express')
 const router = express.Router()
 

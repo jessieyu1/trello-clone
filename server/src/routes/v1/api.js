@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const userRoutes = require('./userRoutes')
-const listRoutes = require('./listRoutes')
-const cardRoutes = require('./cardRoutes')
-const boardRoutes = require('./boardRoutes')
+const userRoutes = require('./user.route')
+const listRoutes = require('./list.route')
+const cardRoutes = require('./card.route')
+const boardRoutes = require('./board.route')
 
 router.use('/users', userRoutes)
 router.use('/lists', listRoutes)
