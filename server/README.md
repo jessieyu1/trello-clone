@@ -7,7 +7,9 @@
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
 - [npm](https://www.npmjs.com/)
-
+- [nodemon](https://nodemon.io/)
+- [MongoDB Compass](https://www.mongodb.com/products/compass)
+- [Mongoose](https://mongoosejs.com/)
 
 ### Installing
 

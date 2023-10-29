@@ -1,8 +1,6 @@
 const expressLoader = require('./express')
-const dbLoader = require('./db')
 
-exports.init = (expressApp) => {
-  expressLoader(expressApp)
+exports.init =  async (app) => {
+  await expressLoader(app)
   console.log('Express Initialized')
-  //TODO: add dbLoader
 }
