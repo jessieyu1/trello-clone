@@ -1,30 +1,31 @@
+
 //TODO: connect to mongoDB
 
+
 const mongoose = require('mongoose')
-const config = require('../config/index')
 
-const User = require('../models/user.model')
+const connectDB = async (URI) => { 
+  if (!URI) {
+    throw new Error('Please provide a valid URI')
+  }
+  const db = mongoose.connection 
 
-async function dbLoader() {
+  db.on('error', (error) => console.log(error))
+  db.on(
+    'connected',() => console.log('✅Connected to MongoDB✅')   
+  )
+  db.on('disconnected', () => console.log('❌Disconnected from MongoDB❌'))
+  return mongoose.connect(URI)
+}
+
+const db = async (URI) => {
   try {
-    await mongoose.connect(config.databaseUrl, {
-      useNewUrlParser: true,
-      useUnifiedToPology: true,
-    })
-
-    // const defaultUser = new User({
-    //   email: '8@abc.com',
-    //   password: 'password123',
-    //   name: '8',
-    //   boards: [],
-    // })
-    // await defaultUser.save()
-    console.log('#### Connected to MongoDB ####')
-    return { mongoose, User }
+    await connectDB(URI)
   } catch (error) {
-    console.error('MongoDB connected error:', error)
-    throw error
+    console.log(error)
+    process.exit(1)
   }
 }
 
-module.exports = dbLoader
+module.exports = db
+

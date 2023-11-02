@@ -1,25 +1,26 @@
 //TODO: create a card model
-const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose');
+const Joi=require('joi')
 
-const cardSchema = new Schema({
-  title: {
-    type: String
-  },
+
+//TODO: Add validation to the schema
+const cardSchema = new mongoose.Schema({
+  title: { type: String, required: true },
   description: String,
-  list: {
-    type: Schema.Types.ObjectId,
-    ref: 'List',
-  },
-  comments: [{
-    text: String,
-    // 其他字段（例如作者、时间戳等）可以根据需要添加
-  }],
-  attachments: [{
-    url: String,
-    // 其他字段（例如名称、类型等）可以根据需要添加
-  }],
+  dueDate: Date,
+  list: { type: mongoose.Schema.Types.ObjectId, ref: 'List' },
+  assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
-const Card = model('Card', cardSchema)
+const cardValidationSchema = Joi.object({
+  title: Joi.string().min(3).max(50).required(),
+  description: Joi.string().allow(''),
+  dueDate: Joi.date(),
+  list: Joi.string().hex().length(24).allow('', null),//验证字段是否包含一个有效的 MongoDB ObjectId
+  assignedTo: Joi.string().hex().length(24),
+});
 
-module.exports = Card
+const Card = mongoose.model('Card', cardSchema);
+
+module.exports = { Card, cardValidationSchema };
+

@@ -1,19 +1,32 @@
-//TODO: create a board model
-const { Schema, model } = require('mongoose')
 
-const boardSchema = new Schema({
-  title: String,
+//TODO: create a board model
+
+const mongoose = require('mongoose');
+
+const Joi = require('joi')
+
+
+//TODO: Add validation to the schema
+const boardSchema = new mongoose.Schema({
+  title: { type: String, required: true },
   description: String,
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  lists: [{
-    type: Schema.Types.ObjectId,
-    ref: 'List',
-  }],
+  lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
-const Board = model('Board', boardSchema)
+const boardValidationSchema = Joi.object({
+  title: Joi.string().min(3).max(50).required(),
+  description: Joi.string().pattern(/^[a-zA-Z0-9\s]*$/).allow(''),
+  members: Joi.array().items(Joi.string().hex().length(24)).custom((members, helpers) => {
+    if (members.length < 1) {
+      return helpers.error('at least one member');
+    }
+    return members;
+  }),
+  lists: Joi.array().items(Joi.string().hex().length(24)).default([])
+})
 
-module.exports = Board
+const Board = mongoose.model('Board', boardSchema);
+
+module.exports = { Board, boardValidationSchema };
+

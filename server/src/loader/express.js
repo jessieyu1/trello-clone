@@ -3,6 +3,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 
+
 module.exports = async (app) => {
   app.use(cors())
   app.use(express.json())
@@ -10,3 +11,7 @@ module.exports = async (app) => {
 
   return app
 }
+
+
+
+
