@@ -11,7 +11,7 @@ const addUser = async (req, res) => {
       return 
     }
     const user = await userService.createUser(email, password, username, boards);
-   return res.status(201).json(user);
+    return res.status(201).json(user);
   } catch (error) {
     res.status(400).json({ error: error.details[0].message });
   }
