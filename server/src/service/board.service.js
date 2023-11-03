@@ -1,9 +1,9 @@
-const {Board} = require('../models/board.model');
+const {Board,boardValidationSchema} = require('../models/board.model');
 
 // TODO: Create a new board
 const createBoard =async (req, res) => {
     try {
-      // Validate the request data using Joi
+
       const { error } = boardValidationSchema.validate(req.body);
       if (error) {
         return res.status(400).json({ error: error.details[0].message });
@@ -13,7 +13,6 @@ const createBoard =async (req, res) => {
       const { title, description } = req.body;
       const newBoard = new Board({ title, description });
       const savedBoard = await newBoard.save();
-  
       res.status(201).json(savedBoard);
     } catch (error) {
       console.error('Error for creating boards', error);
