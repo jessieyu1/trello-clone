@@ -31,6 +31,8 @@ Client: Frontend
 - [x] [Kathy Chen]
 - [x] [Eren Qu]
 - [x] [Bruce Deng]
+- [x] [Tobby Guo]
+
 
 ## Tutor 
 - [x] [Jessie Yu]
