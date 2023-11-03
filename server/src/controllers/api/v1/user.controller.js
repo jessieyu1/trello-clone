@@ -1,8 +1,8 @@
-const User = require('../../../models/user.model')
+const userService = require('../../../services/user.service')
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find()
+    const users = await userService.getAllUsers()
     res.status(200).json(users)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -11,7 +11,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const user = await userService.getUser(req.params.id)
     if (!user) return res.status(404).json({ message: 'User not found' })
     res.status(200).json(user)
   } catch (error) {
@@ -20,9 +20,8 @@ exports.getUser = async (req, res) => {
 }
 
 exports.createUser = async (req, res) => {
-  const newUser = new User(req.body)
   try {
-    const user = await newUser.save()
+    const user = await userService.createUser(req.body)
     res.status(201).json(user)
   } catch (error) {
     res.status(400).json({ message: error.message })
@@ -31,9 +30,7 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    })
+    const user = await userService.updateUser(req.params.id, req.body)
     if (!user) return res.status(404).json({ message: 'User not found' })
     res.status(200).json(user)
   } catch (error) {
@@ -43,7 +40,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.id)
+    const user = await userService.deleteUser(req.params.id)
     if (!user) return res.status(404).json({ message: 'User not found' })
     res.status(200).json({ message: 'User deleted successfully' })
   } catch (error) {
