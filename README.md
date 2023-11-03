@@ -33,5 +33,7 @@ Client: Frontend
 - [x] [Bruce Deng]
 - [x] [Libby Liu]
 
+- [x] [Tobby Guo]
+
 ## Tutor 
 - [x] [Jessie Yu]
