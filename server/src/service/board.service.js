@@ -1,6 +1,19 @@
-const Board = require('../models/board');
+const Board = require('../models/board.model');
 
 // TODO: Create a new board
+
+
+const createBoardService = async (data) => {
+  const { title, description } = data;
+
+  const newBoard = new Board({
+    title,
+    description,
+  });
+
+  return newBoard.save();
+};
+
 
 
 // TODO:  Get a list of all boards
@@ -14,3 +27,6 @@ const Board = require('../models/board');
 
 // TODO: Delete a board
 
+module.exports = {
+  createBoardService
+};
