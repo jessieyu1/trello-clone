@@ -11,7 +11,7 @@ beforeAll(async () => {
     _id: new mongoose.Types.ObjectId('5c793331bc99fc1510b847b9'),
     title: 'Test List',
     position: 1,
-    board: new mongoose.Types.ObjectId('5c793331bc99fc1510b846c8'), // mock board id
+    board: new mongoose.Types.ObjectId('5c793331bc99fc1510b846c8'),
   })
   await list.save()
 })
@@ -25,7 +25,7 @@ it('should return 201 if post is valid', async () => {
   const res = await request.post('/api/v1/lists').send({
     title: 'New List',
     position: 2,
-    board: new mongoose.Types.ObjectId('5c793331bc99fc1510b846c9'), // another mock board id
+    board: new mongoose.Types.ObjectId('5c793331bc99fc1510b846c9'),
   })
   expect(res.statusCode).toBe(201)
   expect(res.body.title).toBe('New List')

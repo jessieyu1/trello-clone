@@ -11,9 +11,8 @@ beforeAll(async () => {
     _id: new mongoose.Types.ObjectId('5c793331bc99fc1510b847c9'),
     title: 'Test Board',
     description: 'This is a test board',
-    // Assume the user is created in the User model as provided in the User test.
     owner: new mongoose.Types.ObjectId('5c793331bc99fc1510b846c9'),
-    lists: [], // Empty lists array for simplicity
+    lists: [],
   })
   await board.save()
 })
