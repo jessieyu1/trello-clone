@@ -32,7 +32,7 @@ Client: Frontend
 - [x] [Eren Qu]
 - [x] [Bruce Deng]
 - [x] [Libby Liu]
-
+- [x] [Jason Wang]
 - [x] [Tobby Guo]
 
 ## Tutor 
