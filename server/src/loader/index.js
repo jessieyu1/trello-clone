@@ -1,6 +1,7 @@
 const expressLoader = require('./express')
+const logger = require('pino')()
 
 exports.init =  async (app) => {
   await expressLoader(app)
-  console.log('Express Initialized')
+  logger.info('Express Initialized')
 }
