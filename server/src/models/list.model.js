@@ -7,7 +7,7 @@ const listSchema = new mongoose.Schema({
   cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
   board: { type: mongoose.Schema.Types.ObjectId, ref: 'Board' },
 });
-
+//TODO: what is right
 //define a Joi schema for validation
 const listValidationSchema = Joi.object({
   title: Joi.string().required()

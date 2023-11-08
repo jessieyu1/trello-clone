@@ -1,24 +1,20 @@
 const express=require('express')
 const router = express.Router()
 const {
-  createBoard,
-  getAllBoards,
-  getOneBoard,
-  updateBoard,
-  deleteBoard,
-} = require('../service/board.service');
+  deleteBoard, updateBoard, getBoardById, getAllBoards, createNewBoard
+} = require('../controller/boards.controller');
 
-// TODO: Board Routes:
+// Board Routes:
 
 // Create a new board: POST /api/boards
-router.post('/boards', createBoard);
+router.post('/', createNewBoard);
 // Get a list of all boards: GET /api/boards
-router.get('/boards', getAllBoards);
+router.get('/', getAllBoards);
 // Get a specific board: GET /api/boards/:boardId
-router.get('/boards/:boardId', getOneBoard);
+router.get('/:boardId', getBoardById);
 // Update a board's details: PUT /api/boards/:boardId
-router.put('/boards/:boardId', updateBoard);
+router.put('/:boardId', updateBoard);
 // Delete a board: DELETE /api/boards/:boardId
-router.delete('/boards/:boardId', deleteBoard);
+router.delete('/:boardId', deleteBoard);
 
 module.exports = router;

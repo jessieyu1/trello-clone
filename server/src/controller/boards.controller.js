@@ -1,60 +1,65 @@
-const axios = require('axios');
-
-//TODO: Create a new board
-async function createNewBoard() {
-    try {
-      const newBoard = {
-        title: 'My New Board',
-        description: 'Description of the new board',
-      };
-      const response=await axios.post('/api/boards',newBoard)
-      return response.data
-    } catch (error) {
-    console.log("an error when creating a board",error);
-  }}
-//TODO: Get a list of all boards
-async function getAllBoards(){
-    try {
-        const response=await axios.get('/api/boards')
-        return response.data
-    } catch (error) {
-        console.log("Error",error);
-        throw error
+const boardService = require('../services/boards.service');
+//Create a new board
+const createNewBoard = async (req, res) => {
+  try {
+    if (!req.body) {
+      res.status(400).json({ error: "Request body is missing" });
+    } else {
+      const newBoard = await boardService.createBoard(req.body);
+      res.status(201).json(newBoard);
     }
+  } catch (error) {
+    res.status(500).json({ error: "Board creation failed" })
+  }
 }
-
-//TODO: Other controller functions for getBoardById, updateBoard, and deleteBoard
-//getBoardById
-async function getBoardById(boardId) {
+  //Get a list of all boards
+  const getAllBoards = async (req, res) => {
     try {
-      const response = await axios.get(`/api/boards/${boardId}`);
-      console.log("get all boards");
-      return response.data;
+      const boards = await boardService.getAllBoards()
+      res.status(200).json(boards)
     } catch (error) {
-      console.error('Error getting board by ID:', error);
-      throw error;
+      res.status(500).json({ error: "Failed to fetch boards" })
     }
   }
-//updateBoard
-async function updateBoard(boardId, updatedData) {
-    try {
-      const response = await axios.put(`/api/boards/${boardId}`, updatedData);
-      return response.data;
-    } catch (error) {
-      console.error('Error updating board:', error);
-      throw error;
+    //Other controller functions for getBoardById, updateBoard, and deleteBoard
+    //getBoardById
+    const getBoardById = async (req, res) => {
+      try {
+        const board = await boardService.getOneBoard(req.params.boardId)
+        if (!board) {
+          res.status(404).json({ error: "Board not found" });
+        } else {
+          res.status(200).json(board);
+        }
+      } catch (error) {
+        res.status(500).json({ error: "Failed to fetch board" })
+      }
     }
-  }
+      //updateBoard
+      const updateBoard = async (req, res) => {
+        try {
+          const updatedBoard = await boardService.updateBoard(req.params.boardId, req.body)
+          if (updatedBoard) {
+            res.status(200).json(updatedBoard);
+          } else {
+            res.status(404).json({ error: "Board not found" });
+          }
+        } catch (error) {
+          res.status(500).json({ error: "Board update failed" })
+        }
+      }
+        //deleteBoard
+        const deleteBoard = async (req, res) => {
+          try {
+            const deletedBoard = await boardService.deleteBoard(req.params.boardId)
+            if (deletedBoard) {
+              res.status(204).json(); 
+            } else {
+              res.status(404).json({ error: "Board not found" });
+            }
+          } catch (error) {
+            res.status(500).json({ error: "Board deletion failed" })
+          }
+        }
 
-//deleteBoard
-async function deleteBoard(boardId){
-    try {
-        await axios.delete(`/api/boards/${boardId}`)
-        console.log("board delete success");
-    } catch (error) {
-        console.error('Error deleting board:', error);
-        throw error;
-    }
-}
-
-module.exports={deleteBoard,updateBoard,getBoardById,getAllBoards,createNewBoard}
+module.exports = { deleteBoard, updateBoard, getBoardById, getAllBoards, createNewBoard }
