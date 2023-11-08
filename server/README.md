@@ -10,6 +10,12 @@
 - [nodemon](https://nodemon.io/)
 - [MongoDB Compass](https://www.mongodb.com/products/compass)
 - [Mongoose](https://mongoosejs.com/)
+- [Express](https://expressjs.com/)
+- [joi](https://www.npmjs.com/package/joi)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [pino](https://www.npmjs.com/package/pino)
+- [morgan](https://www.npmjs.com/package/morgan)
 
 ### Installing
 

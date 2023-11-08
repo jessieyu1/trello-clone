@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Joi = require('joi')
-//TODO: Add validation to the schema
+// Add validation to the schema
 const boardSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
-  lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
-  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  // lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
+  // members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
 //add joi validation to the board schema

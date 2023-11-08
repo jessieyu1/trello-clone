@@ -4,10 +4,12 @@ const { createNewBoard } = require('../controller/boards.controller')
 const axios = require('axios')
 jest.mock('axios');
 const mockAxios = axios;
-const mockResponse = { data: {
-    title: 'My New Board',
-    description: 'Description of the new board',
-} };
+const mockResponse = {
+    data: {
+        title: 'My New Board',
+        description: 'Description of the new board',
+    }
+};
 
 describe('createNewBoard', () => {
     it('creates a new board successfully', async () => {

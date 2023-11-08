@@ -1,4 +1,4 @@
-const { Board } = require('../models/board.model');
+const {Board} = require('../models/board.model');
 
 const createBoard = async (data) => {
   try {
@@ -12,7 +12,7 @@ const createBoard = async (data) => {
 
 const getAllBoards = async () => {
   try {
-    return await Board.find().exec();
+    return await Board.find({}).exec();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch boards' });
