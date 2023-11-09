@@ -3,9 +3,9 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-//TODO: Add validation to the schema, username and email should be unique, password should be hashed
-//TODO: Use bcrypt to hash the password
-//TODO: Use Joi to validate the schema
+// Add validation to the schema, username and email should be unique, password should be hashed
+// Use bcrypt to hash the password
+// Use Joi to validate the schema
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
