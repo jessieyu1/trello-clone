@@ -1,8 +1,8 @@
-const Joi = require('joi');
+const Joi = require("joi");
 
 const createBoardSchema = Joi.object({
   title: Joi.string().required(),
-  description: Joi.string()
+  description: Joi.string(),
 });
 
 const validateCreateBoard = (req, res, next) => {
@@ -15,6 +15,23 @@ const validateCreateBoard = (req, res, next) => {
   next();
 };
 
+
+const updateBoardSchema = Joi.object({
+  title: Joi.string().required(),
+  description: Joi.string(),
+});
+
+const validateUpdateBoard = (req, res, next) => {
+  const { error } = updateBoardSchema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+  next();
+};
+
 module.exports = {
   validateCreateBoard,
+  validateUpdateBoard,
 };
