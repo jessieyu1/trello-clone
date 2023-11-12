@@ -18,9 +18,9 @@ const createUser = async (req, res, next) => {
     //   return
     // } else {
         
-      // console.log(req.body)
-      const hashedPassword = await securePassword.hashPassword(password)
-      // console.log(hashedPassword)
+    // console.log(req.body)
+    const hashedPassword = await securePassword.hashPassword(password)
+    // console.log(hashedPassword)
     usersValidation.validateCreateUser(req, res, async () => {
       try {
         const newUser = await userService.createUserService(
@@ -35,7 +35,7 @@ const createUser = async (req, res, next) => {
       } catch (error) {
         next(error)
       }
-      })
+    })
     // }
   } catch (error) {
     next(error)
