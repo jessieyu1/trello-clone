@@ -1,87 +1,127 @@
-const userService = require('../service/user.service');
-const{User,userValidationSchema}=require('../models/user.model')
+const mongoose = require('mongoose')
+const { User } = require('../models/user.model')
+const userService = require('../service/user.service')
 
-const addUser = async (req, res) => {
+const usersValidation = require('../validation/users.validation')
+const securePassword = require('../utils/securePassword')
+const NotFoundException = require('../exceptions/NotFoundException')
+const objectIdError = require('../middleware/error/objectIdError')
+
+
+const createUser = async (req, res, next) => {
   try {
-    const { email, password, username, boards } = req.body;
-    const { error } = userValidationSchema.validate({ email, password, username, boards })
-    console.log('Validation Error:', error);
-    if (error) {
-      res.status(400).json({ error: error.details[0].message });
-      return 
+    const existingUser = await User.findOne({
+      email: req.body.email,
+    })
+    if (existingUser) {
+      res.status(409).json({ error: 'User Already Exists'})
+      return
+    } else {
+      
+      const { username, email, password, boards } = req.body
+      // console.log(req.body)
+      const hashedPassword = await securePassword(password)
+      // console.log(hashedPassword)
+     usersValidation.validateCreateUser(req, res, () => {
+        const newUser = userService.createUserService(          
+          username,
+          email,   
+          hashedPassword,
+          boards
+       )
+       
+       res.status(201).json(newUser)
+      return
+      
+      })
     }
-    const user = await userService.createUser(email, password, username, boards);
-    return res.status(201).json(user);
   } catch (error) {
-    res.status(400).json({ error: error.details[0].message });
+    next(error)
   }
 }
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res,next) => {
   try {
-    const users = await userService.getAllUsers();
-    res.json(users);
+    const users = await userService.getAllUsersService()
+    res.json(users)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({error: 'Internal Server Error' });
+
+    next(error)
   }
 }
 
-const getUserById = async (req, res) => {
+const getUserById = async (req, res,next) => {
+
+    const { userId } = req.params
+    if (!userId) {
+      next(new objectIdError);
+    }
+  
+    try {
+    const user = await userService.getUserByIdService(userId)
+      if (!user) {
+        throw new NotFoundException('User not found')
+        // return res.status(404).json({Error:("User not found")})
+    }
+    res.status(200).json(user)
+  } catch (error) {
+    next(error)
+  }
+}
+
+const updateUserById = async (req, res, next) => {
   try {
-    const {userId } = req.params;
-    const user = await userService.getUserById(userId);
-    if (!user) {
-      res.status(404).json({ error: 'User not found' });
-      return;
-    }
-    res.json(user);
+    const { userId } = req.params
+    const { username, email, password, boards } = req.body
+    const hashedPassword = await securePassword(password)
+      
+    usersValidation.validateCreateUser(req, res, async () => {
+      try {
+        const updatedUser = await userService.updateUserByIdService(
+          userId,
+          username,
+          email,
+          hashedPassword,
+          boards,
+          {
+            new: true
+          }
+        )
+        if (!updatedUser) {
+          throw new NotFoundException('User Not Found')
+        }
+      
+    res.status(201).json(updatedUser)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error)
   }
+})
+}catch (error) {
+  next(error)
 }
-
-const updateUserById = async (req, res) => { 
-  try{
-    const { userId } = req.params;
-    const { email, password, username, boards } = req.body;
-    const { error } = userValidationSchema.validate({ email, password, username, boards })
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
-    
-    const user = await userService.updateUserById(userId, email, password, username, boards);
-    if (!user) {
-      res.status(404).json({ error: 'User not found' });
-      return;
-    }
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
 }
+const deleteUserById = async (req, res,next) => {
 
-const deleteUserById = async (req, res) => {
-  try{
-    const { userId } = req.params;
-    const user = await userService.deleteUserById(userId);
-    if (!user) {
-      res.status(404).json({ error: 'User not found' });
-      return;
+    const { userId } = req.params
+    if (!userId) {
+     next(new objectIdError);
     }
-    res.sendStatus(204);
+  
+     try { 
+    const user = await userService.deleteUserByIdService(userId)
+    if (!user) {
+  throw new NotFoundException('User Not Found')
+    }
+    res.sendStatus(204)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error)
   }
 }
 
 module.exports = {
-  addUser,
+  createUser,
   getAllUsers,
   getUserById,
   updateUserById,
   deleteUserById,
-};
+}

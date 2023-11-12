@@ -1,40 +1,45 @@
-const { Board } = require('../models/board.model');
+const { Board } = require('../models/board.model')
 
 // TODO: Create a new board
-async function createBoard(title, description, lists, members) {
+const createBoardService = async (title, description, lists, members) => {
   const board = new Board({ title, description, lists, members })
-  return await board.save()
+  return board.save()
 }
 
 // TODO:  Get a list of all boards
-async function getAllBoards() {
-  return await Board.find().exec()
+const getAllBoardsService = async () => {
+  return Board.find().exec()
 }
 
 // TODO: Get a specific board by ID
-async function getBoardById(boardId) {
-  return await Board.findById(boardId).exec();
+const getBoardByIdService = async (boardId) => {
+  return Board.findById(boardId).exec()
 }
 
 // TODO: Update a board's details
-async function updateBoardById(boardId, title, description, lists, members) {
-  return await Board.findByIdAndUpdate(
+const updateBoardByIdService = async (
+  boardId,
+  title,
+  description,
+  lists,
+  members
+) => {
+  return Board.findByIdAndUpdate(
     boardId,
     { title, description, lists, members },
     { new: true }
-  ).exec();
+  ).exec()
 }
 
-
 // TODO: Delete a board
-async function deleteBoardById(boardId) {
-  return await Board.findByIdAndDelete(boardId).exec();
+const deleteBoardByIdService = async (boardId) => {
+  return Board.findByIdAndDelete(boardId).exec()
 }
 
 module.exports = {
-  createBoard,
-  getAllBoards,
-  getBoardById,
-  updateBoardById,
-  deleteBoardById,
-};
+  createBoardService,
+  getAllBoardsService,
+  getBoardByIdService,
+  updateBoardByIdService,
+  deleteBoardByIdService,
+}

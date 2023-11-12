@@ -1,34 +1,40 @@
-const { User} = require('../models/user.model');
+const { User } = require('../models/user.model')
 
-async function createUser(email, password, username, boards) {
-  const user = new User({ email, password, username, boards });
-  return user.save();
+async function createUserService(username, email, password, boards) {
+  const user = new User({ username, email, password, boards })
+  return user.save()
 }
 
-async function getAllUsers() {
-  return User.find().exec();
+async function getAllUsersService() {
+  return User.find().exec()
 }
 
-async function getUserById(userId) {
-  return User.findById(userId).exec();
+async function getUserByIdService(userId) {
+  return User.findById(userId).exec()
 }
 
-async function updateUserById(userId, email, password, username, boards) {
+async function updateUserByIdService(
+  userId,
+  username,
+  email,
+  password,
+  boards
+) {
   return User.findByIdAndUpdate(
     userId,
-    { email, password, username, boards },
+    { username, email, password, boards },
     { new: true }
-  ).exec();
+  ).exec()
 }
 
-async function deleteUserById(userId) {
-  return User.findByIdAndDelete(userId).exec();
+async function deleteUserByIdService(userId) {
+  return User.findByIdAndDelete(userId).exec()
 }
 
 module.exports = {
-  createUser,
-  getAllUsers,
-  getUserById,
-  updateUserById,
-  deleteUserById,
-};
+  createUserService,
+  getAllUsersService,
+  getUserByIdService,
+  updateUserByIdService,
+  deleteUserByIdService,
+}

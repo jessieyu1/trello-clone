@@ -1,103 +1,106 @@
-const boardService = require('../service/board.service')
-const { boardValidationSchema } = require('../models/board.model');
-//TODO: Create a new board
 
+const NotFoundException = require('../exceptions/NotFoundException');
+const {Board}=require('../models/board.model')
+const boardService = require('../service/board.service');
+
+const boardsValidation = require('../validation/boards.validation');
+
+//TODO: Create a new board
 
 //TODO: Get a list of all boards
 
 //TODO: Other controller functions for getBoardById, updateBoard, and deleteBoard
 
-async function addBoard(req, res) {
+const createBoard = async (req, res,next) =>{
   try {
-    const { title, description, lists, members } = req.body;
-    const { error } = boardValidationSchema.validate({ title, description, lists, members });
-
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
-
-    const board = await boardService.createBoard(title, description, lists, members);
-
-    return res.status(201).json(board);
+    const existingBoard = await Board.findOne({
+      title: req.body.title,
+    })
+    if (existingBoard) {
+      res.status(403).json({Error: 'Board Already Exists'} )
+      return
+    } else {
+      const { title, description, lists, members } = req.body;
+      boardsValidation.validateCreateBoard(req, res, () => {
+        const board =  boardService.createBoardService(req.body);
+        return res.status(201).json(board);
+      })
+      // const board = await boardService.createBoardService(title, description, lists, members);
+      // return res.sendStatus(201).json(board);
+    }   
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ error: error.details[0].message });
+
+    next(error)
   }
 }
 
-async function getAllBoards(req, res) {
+async function getAllBoards(req, res, next) {
   try {
-    const boards = await boardService.getAllBoards();
+    const boards = await boardService.getAllBoardsService();
     res.json(boards);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    
+    next(error)
   }
 }
 
-async function getBoardById(req, res) {
-  try {
+async function getBoardById(req, res,next) {
+  
     const { boardId } = req.params;
-    const board = await boardService.getBoardById(boardId);
+    if (!boardId) {
+      next(new objectIdError);
+  }
+  try {
+    const board = await boardService.getBoardByIdService(boardId);
 
     if (!board) {
-      return res.status(404).json({
-        error: 'Board not found',
-      });
-    }
-
-    res.json(board);
+     throw new NotFoundException('Board Not Found')
+      };
+    res.status(201).json(board);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error)
   }
 }
 
-async function updateBoardById(req, res) {
+const updateBoardById= async (req, res,next)=> {
   try {
     const { boardId } = req.params;
     const { title, description, lists, members } = req.body;
-    const { error } = boardValidationSchema.validate({ title, description, lists, members });
 
-    if (error) {
-      return res.status(400).json({ error: error.details[0].message });
-    }
-
-    const updatedBoard = await boardService.updateBoardById(boardId, title, description, lists, members);
-
-    if (!updatedBoard) {
-      return res.status(404).json({
-        error: 'Board not found',
-      });
-    }
-
-    res.json(updatedBoard);
+    boardsValidation.validateCreateBoard(req, res, async () => {
+      try {
+        const updatedBoard = await boardService.updateBoardByIdService(boardId, title, description, lists, members, { new: true });
+        if (!updatedBoard) {
+          throw new NotFoundException('Board Not Found')
+        }
+        res.status(201).json(updatedBoard);
+      } catch (error) {
+        next(error)
+      }
+      }) 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error)
   }
 }
 
-async function deleteBoardById(req, res) {
+async function deleteBoardById(req, res,next) {
   try {
     const { boardId } = req.params;
-    const result = await boardService.deleteBoardById(boardId);
+    const result = await boardService.deleteBoardByIdService(boardId);
 
     if (!result) {
-      return res.status(404).json({
-        error: 'Board not found',
-      });
+     throw new NotFoundException('Board Not Found')
     }
 
     res.sendStatus(204);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+  
+    next(error)
   }
 }
 
 module.exports = {
-  addBoard,
+  createBoard,
   getAllBoards,
   getBoardById,
   updateBoardById,

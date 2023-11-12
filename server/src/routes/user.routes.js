@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const { getAllUsers, getUserById, addUser, updateUserById, deleteUserById } = require('../controller/users.controller')
+const { getAllUsers, getUserById, createUser, updateUserById, deleteUserById } = require('../controller/users.controller')
+const {validateCreateUser} = require ('../validation/users.validation.js')
 
 const userRouter= Router()
 
@@ -8,7 +9,7 @@ const userRouter= Router()
 
 userRouter.get('/',getAllUsers)
 userRouter.get('/:userId',getUserById)
-userRouter.post('/',addUser)
+userRouter.post('/',createUser)
 userRouter.put('/:userId',updateUserById)
 userRouter.delete('/:userId',deleteUserById)
 

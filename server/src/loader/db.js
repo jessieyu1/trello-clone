@@ -1,6 +1,4 @@
-
 //TODO: connect to mongoDB
-
 
 const mongoose = require('mongoose')
 
@@ -15,7 +13,7 @@ const connectDB = async (URI) => {
     'connected',() => console.log('✅Connected to MongoDB✅')   
   )
   db.on('disconnected', () => console.log('❌Disconnected from MongoDB❌'))
-  return mongoose.connect(URI)
+  return mongoose.connect(URI,{useNewUrlParser: true, useUnifiedTopology: true })
 }
 
 const db = async (URI) => {

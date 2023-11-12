@@ -5,10 +5,12 @@ const config = require('./src/config')
 
 const app = express();
 
+const jwt = require('jsonwebtoken')
+
 loader.init(app)
 
 // app.use(express.json())
-app.use(config.api.prefix,v1Router)
+// app.use(config.api.prefix,v1Router)
 
 
 module.exports = app;

@@ -3,8 +3,6 @@ const config = require('./src/config')
 const db = require('./src/loader/db');
 
 
-
-
 async function startServer() {
   await db(config.mongo.uri)
 
