@@ -2,7 +2,7 @@
 
 const { Router } = require('express')
 const { getAllBoards, getBoardById,updateBoardById,deleteBoardById, createBoard } = require('../controller/boards.controller')
-const { validateCreateBoard } = require('../validation/boards.validation')
+
 
 const boardRouter= Router()
 
