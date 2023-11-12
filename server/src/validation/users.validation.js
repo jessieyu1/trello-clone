@@ -11,9 +11,9 @@ const userValidationSchema = Joi.object({
 const validateCreateUser = async (req, res, next) => {
   try {
     const { error } =  userValidationSchema.validate(req.body)
-  if (error) {
-    return res.status(400).json(`ValidationError:${error.details[0].message}`)
-  } 
+    if (error) {
+      return res.status(400).json(`ValidationError:${error.details[0].message}`)
+    } 
     next()
   } catch (error) {
     next(error)

@@ -19,7 +19,7 @@ module.exports = (error, req, res, next) => {
     logger.error(logInfo);
     return res.status(400).json({ error: 'Invalid JSON in request body' }); // 注意这里使用了 return
   }
-    // 对于其他类型的错误，可以选择记录或者根据实际情况处理
- next(error)
+  // 对于其他类型的错误，可以选择记录或者根据实际情况处理
+  next(error)
 
 };

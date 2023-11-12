@@ -22,16 +22,16 @@ const createUser = async (req, res, next) => {
       // console.log(req.body)
       const hashedPassword = await securePassword(password)
       // console.log(hashedPassword)
-     usersValidation.validateCreateUser(req, res, () => {
+      usersValidation.validateCreateUser(req, res, () => {
         const newUser = userService.createUserService(          
           username,
           email,   
           hashedPassword,
           boards
-       )
+        )
        
-       res.status(201).json(newUser)
-      return
+        res.status(201).json(newUser)
+        return
       
       })
     }
@@ -52,16 +52,16 @@ const getAllUsers = async (req, res,next) => {
 
 const getUserById = async (req, res,next) => {
 
-    const { userId } = req.params
-    if (!userId) {
-      next(new objectIdError);
-    }
+  const { userId } = req.params
+  if (!userId) {
+    next(new objectIdError);
+  }
   
-    try {
+  try {
     const user = await userService.getUserByIdService(userId)
-      if (!user) {
-        throw new NotFoundException('User not found')
-        // return res.status(404).json({Error:("User not found")})
+    if (!user) {
+      throw new NotFoundException('User not found')
+      // return res.status(404).json({Error:("User not found")})
     }
     res.status(200).json(user)
   } catch (error) {
@@ -91,26 +91,26 @@ const updateUserById = async (req, res, next) => {
           throw new NotFoundException('User Not Found')
         }
       
-    res.status(201).json(updatedUser)
-  } catch (error) {
+        res.status(201).json(updatedUser)
+      } catch (error) {
+        next(error)
+      }
+    })
+  }catch (error) {
     next(error)
   }
-})
-}catch (error) {
-  next(error)
-}
 }
 const deleteUserById = async (req, res,next) => {
 
-    const { userId } = req.params
-    if (!userId) {
-     next(new objectIdError);
-    }
+  const { userId } = req.params
+  if (!userId) {
+    next(new objectIdError);
+  }
   
-     try { 
+  try { 
     const user = await userService.deleteUserByIdService(userId)
     if (!user) {
-  throw new NotFoundException('User Not Found')
+      throw new NotFoundException('User Not Found')
     }
     res.sendStatus(204)
   } catch (error) {

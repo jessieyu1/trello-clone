@@ -1,4 +1,4 @@
-const NotFoundException = require("../../exceptions/NotFoundException")
+const NotFoundException = require('../../exceptions/NotFoundException')
 
 module.exports = (error, req, res, next) => {
   if (error instanceof NotFoundException) {

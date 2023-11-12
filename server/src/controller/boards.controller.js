@@ -46,16 +46,16 @@ async function getAllBoards(req, res, next) {
 
 async function getBoardById(req, res,next) {
   
-    const { boardId } = req.params;
-    if (!boardId) {
-      next(new objectIdError);
+  const { boardId } = req.params;
+  if (!boardId) {
+    next(new objectIdError);
   }
   try {
     const board = await boardService.getBoardByIdService(boardId);
 
     if (!board) {
-     throw new NotFoundException('Board Not Found')
-      };
+      throw new NotFoundException('Board Not Found')
+    };
     res.status(201).json(board);
   } catch (error) {
     next(error)
@@ -77,7 +77,7 @@ const updateBoardById= async (req, res,next)=> {
       } catch (error) {
         next(error)
       }
-      }) 
+    }) 
   } catch (error) {
     next(error)
   }
@@ -89,7 +89,7 @@ async function deleteBoardById(req, res,next) {
     const result = await boardService.deleteBoardByIdService(boardId);
 
     if (!result) {
-     throw new NotFoundException('Board Not Found')
+      throw new NotFoundException('Board Not Found')
     }
 
     res.sendStatus(204);

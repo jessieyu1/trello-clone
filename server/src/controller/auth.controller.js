@@ -13,10 +13,10 @@ const register = async (req, res) => {
 const login = async(req, res)=> {
   const { username, password } = req.body
   
- const user= await User.findOne({ username }).exec()
+  const user= await User.findOne({ username }).exec()
   if (!user) {
     res.status(401).json({ error: 'Invalid credentials' })
-   return
+    return
   }
 
   if (user.password !== password) {
