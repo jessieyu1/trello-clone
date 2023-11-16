@@ -1,7 +1,7 @@
 const { Board } = require('../models/board.model')
 
 // TODO: Create a new board
-const createBoardService = async (title, description, lists, members) => {
+const createBoardService = async ({ title, description, lists, members } ) => {
   const board = new Board({ title, description, lists, members })
   return board.save()
 }

@@ -1,17 +1,13 @@
 const { User } = require('../models/user.model')
+const { generateToken } = require('../utils/jwt')
 const securePassword = require('../utils/securePassword')
-const bcrypt = require('bcrypt')
 
 const register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body
-    //validation
-    //409 conflicts
 
     const existingUser = await User.findOne({ $or: [{ username }, { email }] })
-    //  if (existingUser) {
-    //   next(new conflictError)
-    // }
+
     const hashedPassword = await securePassword.hashPassword(password)
 
     const user = new User({
@@ -22,7 +18,10 @@ const register = async (req, res, next) => {
 
     await user.save()
 
-    res.status(201).json({ _id: user._id, username })
+    const token = generateToken({_id: user._id, username })
+
+    res.status(201).json({ token })
+
   } catch (error) {
     next(error)
   }
@@ -37,16 +36,15 @@ const login = async (req, res) => {
     return
   }
 
-
   
   if (!await securePassword.validatePassword(password,user.password)) {
     res.status(401).json({ error: 'Invalid credentials' })
     return
   }
-  res.json({
-    _id: user._id,
-    username: user.username,
-  })
+
+  const token = generateToken({_id: user._id, username })
+
+  res.json({ token })
 }
 
 module.exports = { register, login }

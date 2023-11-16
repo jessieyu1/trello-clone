@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const logger = require('../../utils/logger');
-const NotFoundException = require('../../exceptions/NotFoundException');
+const logger = require('../utils/logger');
+const NotFoundException = require('../exceptions/NotFoundException');
 
 const handleDuplicateKeyError = (error, res) => {
   const field = Object.keys(error.keyPattern)[0];

@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const v1Router = require('../routes')
 const config = require('../config')
 
-const errorHandler = require('../middleware/error/errorHandler')
+const errorHandler = require('../middleware/errorHandler')
 
 module.exports = async (app) => {
   app.use(cors())

@@ -9,6 +9,6 @@ module.exports = {
 
   mongo: {
     uri: process.env.MONGO_URI,
-  }
-
+  },
+  JWT_SECRET: process.env.JWT_KEY
 }

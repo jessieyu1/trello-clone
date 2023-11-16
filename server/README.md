@@ -17,6 +17,10 @@
 - [pino](https://www.npmjs.com/package/pino)
 - [morgan](https://www.npmjs.com/package/morgan)
 
+- [jest](https://jestjs.io/)
+- [supertest](https://www.npmjs.com/package/supertest)
+- [jest-mongodb](https://www.npmjs.com/package/@shelf/jest-mongodb)
+
 ### Installing
 
 1. Clone the repo
