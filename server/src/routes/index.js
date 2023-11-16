@@ -8,7 +8,7 @@ const authRouter= require('./auth.routes')
 const authGuard = require('../middleware/authGuard')
 
 v1Router.use('/users', authGuard, userRouter)
-v1Router.use('/boards', boardRouter)
+v1Router.use('/boards', authGuard, boardRouter)
 v1Router.use('/cards', cardRouter)
 v1Router.use('/lists', listRouter)
 v1Router.use('/auth', authRouter)

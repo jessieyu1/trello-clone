@@ -3,10 +3,13 @@ const supertest = require('supertest')
 const app = require('../../../app')
 const  mongoose  = require('mongoose')
 const { Board } = require('../../models/board.model')
+const { generateToken } = require('../../utils/jwt')
 
 const request = supertest(app)
 
 //fetch,axios.get('/'),request.get('/')
+
+const token = generateToken({username:'test'})
 //可以安装package jest-mongodb
 //测试运行前开启虚拟数据库 lifecycle hook
 beforeAll(async () => {
@@ -31,7 +34,7 @@ describe('/v1/boards', () => {
         members:  ['6541ae6465869f2576537aa5']
       }
       //execute
-      const res= await request.post('/v1/boards').send(payload)
+      const res= await request.post('/v1/boards').set('Authorization',`Bearer ${token}`).send(payload)
       //compare
       expect(res.statusCode).toBe(201)
       //确保存在了数据库中
@@ -56,7 +59,7 @@ describe('/v1/boards', () => {
         //[property]: value 是 JavaScript 中的计算属性名。这种语法允许在对象字面量中使用变量作为属性名。通过传递不同的 property 和 value 的组合，可以测试对于不同的属性缺失或具有无效值时，函数的行为是否符合预期。
       }
 
-      const res = await request.post('/v1/boards').send(invalidBoard)
+      const res = await request.post('/v1/boards').set('Authorization',`Bearer ${token}`).send(invalidBoard)
     
       expect(res.statusCode).toBe(401)
 
