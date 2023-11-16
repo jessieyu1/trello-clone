@@ -1,30 +1,21 @@
-const { VALIDATION_ERROR, INVALID_PASSWORD, INVALID_EMAIL } = require('../utils/constants');
+const { VALIDATION_ERROR, INVALID_PASSWORD, INVALID_EMAIL, NOT_FOUNT_ERROR } = require('../utils/constants');
 
 // error handler 
-
-// 404
-function handleNotFound(req, res, next) {
-    res.status(404).json({ error: 'Not Found' });
-}
-// 400
-function handleValidationError(err, req, res, next) {
-    if (err.name === VALIDATION_ERROR) {
-        res.status(400).json({ error: 'Validation Error', message: err.message });
-    } else if (err.name === INVALID_PASSWORD) {
-        res.status(400).json({ error: 'Invalid Password', message: err.message });
-    } else if (err.name === INVALID_EMAIL) {
-        res.status(400).json({ error: 'Invalid Email', message: err.message });
-    } else {
-        res.status(400).json({ error: 'Bad Request' });
+const errorHandlerMiddleware = (err, req, res, next) => {
+    //default error 500
+    const defaultError = {
+        statusCode:500,
+        message:err.message || 'Internal Server Error'
     }
-}
-// 500
-function handleInternalServerError(err, req, res, next) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    //404 error
+    if (err.name === NOT_FOUNT_ERROR) {
+        return res.status(404).json({ error: 'Not Found', message: err.message });
+    }
+    //400 error
+    if (err.name === VALIDATION_ERROR || err.name === INVALID_PASSWORD || err.name === INVALID_EMAIL) {
+        return res.status(400).json({ error: err.name, message: err.message });
+    }
+    return res.status(defaultError.statusCode).json({ error: defaultError.message });
 }
 
-module.exports={
-    handleNotFound,
-    handleValidationError,
-    handleInternalServerError
-}
+module.exports=errorHandlerMiddleware
