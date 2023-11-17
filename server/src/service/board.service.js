@@ -6,7 +6,7 @@ const createBoard = async (data) => {
     return newBoard.save();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Board creation failed' });
+    next(error);
   }
 }
 
@@ -15,7 +15,7 @@ const getAllBoards = async () => {
     return await Board.find({}).exec();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to fetch boards' });
+    next(error)
   }
 }
 
@@ -24,7 +24,7 @@ const getOneBoard = async (id) => {
     return await Board.findById(id).exec();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to fetch the board' });
+    next(error)
   }
 }
 
@@ -33,7 +33,7 @@ const updateBoard = async (id, updateData) => {
     return await Board.findByIdAndUpdate(id, updateData, { new: true }).exec()
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Board update failed' });
+    next(error)
   }
 }
 
@@ -42,7 +42,7 @@ const deleteBoard = async (id) => {
     return await Board.findByIdAndDelete(id).exec();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Board deletion failed' });
+    next(error)
   }
 }
 
