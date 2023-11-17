@@ -16,10 +16,13 @@
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [pino](https://www.npmjs.com/package/pino)
 - [morgan](https://www.npmjs.com/package/morgan)
-
+- [swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)
+- [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc)
 - [jest](https://jestjs.io/)
 - [supertest](https://www.npmjs.com/package/supertest)
 - [jest-mongodb](https://www.npmjs.com/package/@shelf/jest-mongodb)
+- [nodemailer](https://nodemailer.com/)
+ 
 
 ### Installing
 

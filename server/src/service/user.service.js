@@ -1,5 +1,6 @@
 const { User } = require('../models/user.model')
 
+
 async function createUserService(username, email, password, boards) {
   const user = new User({ username, email, password, boards })
   return user.save()

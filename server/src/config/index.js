@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
   
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
 module.exports = {
   port: process.env.PORT || 8000,
   api: { prefix: process.env.API_PREFIX || '/api/v1' },
@@ -10,5 +11,6 @@ module.exports = {
   mongo: {
     uri: process.env.MONGO_URI,
   },
-  JWT_SECRET: process.env.JWT_KEY
+  JWT_SECRET: process.env.JWT_KEY,
+  GMAIL_PASSWORD: process.env.GMAIL_PASSWORD
 }

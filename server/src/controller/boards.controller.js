@@ -3,6 +3,7 @@ const { Board } = require('../models/board.model')
 const boardService = require('../service/board.service')
 const boardsValidation = require('../validation/boards.validation')
 
+
 const createBoard = async (req, res, next) => {
   try {
     const { title, description, lists, members } = req.body

@@ -6,7 +6,105 @@ const usersValidation = require('../validation/users.validation')
 const securePassword = require('../utils/securePassword')
 const NotFoundException = require('../exceptions/NotFoundException')
 
-
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    User:
+ *      type: object
+ *      properties:
+ *        username:
+ *          type: string
+ *          description: The user name
+ *        email: 
+ *          type: string
+ *          format: email
+ *          description: The user email
+ *        password:
+ *          type: string
+ *          description: The user password
+ *        boards:
+ *          type: array
+ *          items:
+ *            $ref: '#components/schemas/Board'
+ *          description: The user boards
+ *      required:
+ *        - username
+ *        - email
+ *        - password
+ *    Board:
+ *      type: object
+ *      properties:
+ *        title:
+ *          type: string
+ *          description: The Board title
+ *        description: 
+ *          type: string
+ *          format: email
+ *          description: The Board description
+ *        lists:
+ *          type: array
+ *          items:
+ *            $ref: '#components/schemas/List'
+ *          description: An array of list references associated with the board
+ *        members:
+ *          type: array
+ *          items:
+ *            $ref: '#components/schemas/User'
+ *          description: The user boards
+ *    List:
+ *      type: object
+ *      properties:
+ *        title:
+ *          type: string
+ *          description: The title of the list
+ *        cards:
+ *          type: array
+ *          items:
+ *            $ref: '#/components/schemas/Card'
+ *        board:
+ *          type: string  # 这里假设 board 是一个字符串，可以根据实际情况调整
+ *          description: The ID of the associated board
+ *    Card:
+ *      type: object
+ *      properties:
+ *        title:
+ *          type: string
+ *          description: The title of the card
+ *          required: true
+ *        description:
+ *          type: string
+ *          description: The description of the card
+ *        dueDate:
+ *          type: string
+ *          format: date-time
+ *          description: The due date of the card
+ *        list: 
+ *          type: object
+ *          format: ObjectId
+ *          description: The ID of the associated list
+ *          example: "611f28a49ae7a652a0d01b11" # Replace with a valid List ID
+ *        assignedTo:
+ *          type: object  
+ *          format: ObjectId
+ *          description: The ID of the user assigned to the card
+ *          example: "611f28a49ae7a652a0d01b22" # Replace with a valid User ID
+ * paths:
+ *   v1/users:
+ *     post:
+ *       summary: Creates a new user.
+ *       tags:
+ *         - Users
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'    # <-------
+ *         responses:
+ *           '201':
+ *             description: Created 
+ */
 
 const createUser = async (req, res, next) => {
   try {
