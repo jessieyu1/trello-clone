@@ -1,31 +1,26 @@
-const { validateToken } = require('../utils/jwt');
-const constants = require('../utils/constants');
+//验证请求是否包含token，以及token是否有效
+const { validateToken } = require('../utils/jwt')
 
 module.exports = (req, res, next) => {
-  // 先检查 header 是否存在
-  const authorization = req.header(constants.HEADERS.AUTHORIZATION);
-
+  //先检查header是否存在
+  const authorization = req.header('Authorization')
   if (!authorization) {
-    res.status(constants.HTTP_STATUS_CODES.UNAUTHORIZED).json({ error: constants.ERROR_MESSAGES.UNAUTHORIZED });
-    return;
+    res.status(401).json({ error: 'missing authorization header' })
+    return
   }
 
   // 如果存在，就做检测，分两部分检测 一是类型，二是实际的值 
-  // 正常 Token 写法是 Bearer xxxxx
-  const [type, token] = authorization.split(' ');
-
-  if (type !== 'Bearer' || !token) {
-    res.status(constants.HTTP_STATUS_CODES.UNAUTHORIZED).json({ error: constants.ERROR_MESSAGES.INVALID_TOKEN });
-    return;
+  //正常token 写法是 Bearer xxxxx
+  const [type, token] = authorization.split(' ')
+  if (type !== 'Bearer'||!token ) {
+    res.status(401).json({ error: 'invalid token' })
+    return
   }
-
-  // 如果 Token 有值，验证是否有效 
-  const payload = validateToken(token);
-
+  // 如果token有值，验证是否有效 
+  const payload = validateToken(token)
   if (!payload) {
-    res.status(constants.HTTP_STATUS_CODES.UNAUTHORIZED).json({ error: constants.ERROR_MESSAGES.INVALID_TOKEN });
-    return;
+    res.status(401).json({ error: 'it is invalid token' })
+    return
   }
-
-  next();
-};
+  next()
+}
