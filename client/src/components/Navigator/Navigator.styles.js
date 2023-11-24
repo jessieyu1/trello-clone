@@ -13,7 +13,13 @@ export const NavigatorRootContainer = styled.div`
   height:4rem;
   background-color: #fff;
   position: fixed;
+  top:0;
+  left:0;
+  right:0;
   display:flex;
   justify-content:center;
   align-items:center;
+  /* @media screen and (max-width: 1024px) {
+    margin-right:1rem;
+  } */
 `

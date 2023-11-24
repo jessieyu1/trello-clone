@@ -19,5 +19,6 @@ export const MainBodyContainer = styled.div`
 @media screen and (max-width: 1024px) {
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 `;

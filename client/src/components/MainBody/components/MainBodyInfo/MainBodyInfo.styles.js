@@ -4,8 +4,8 @@ export const MainBodyInfoContainer = styled.div`
   width:50%;
   display:flex;
   flex-direction: column;
-  /* justify-content:center; */
-  align-items:center;
+  justify-content:center;
+  /* align-items:center; */
   padding: 8rem 1rem 2rem 4rem;
   @media screen and (max-width: 1024px) {
     width:70%;

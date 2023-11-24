@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const AppContainer = styled.div`
-  width: 100vw;
+export const LandingPageContainer = styled.div`
+  /* width: 100vw; */
   height: 100vh;
   background-color: #fff;
   padding: 0;
@@ -11,4 +11,5 @@ export const AppContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  /* overflow: hidden; */
 `;

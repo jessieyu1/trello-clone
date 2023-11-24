@@ -10,9 +10,14 @@ import {
   MainBodyInfoTitleH2,
   MainBodyInfoTitleP,
 } from './MainBodyInfo.styles'
+import {LoginSignLink} from '../../../Navigator/components/LoginSign/LogoSign.styles'
 import{VideoIcon} from './MainBodyInfoIcon'
+import { useLoginOrSignupStore } from '../../../../stores/stores'
 
 export default function MainBodyInfo() {
+  const {setLoginOrSignup} = useLoginOrSignupStore((state)=>({
+    setLoginOrSignup:state.setLoginOrSignup
+  }))
   return (
     <MainBodyInfoContainer>
       <MainBodyInfoTitle>
@@ -21,7 +26,11 @@ export default function MainBodyInfo() {
       </MainBodyInfoTitle>
       <MainBodyInfoForm >
         <MainBodyInfoInput type="text" placeholder='Email'/>
-        <MainBodyInfoButton>Sign up - it’s free!</MainBodyInfoButton>
+        <LoginSignLink to="login" onClick={()=>setLoginOrSignup("signup")}>
+          <MainBodyInfoButton >
+          Sign up - it’s free!
+        </MainBodyInfoButton>
+        </LoginSignLink>
       </MainBodyInfoForm>
       <MainBodyInfoVideo>
         <MainBodyInfoVideoText>Watch video</MainBodyInfoVideoText>
