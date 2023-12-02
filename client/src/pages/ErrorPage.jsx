@@ -1,5 +1,7 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import {ErrorPageContainer} from "./ErrorPage.styles";
+import { Button } from "@mui/material";
+
 export default function ErrorPage() {
     const error = useRouteError();
     console.error(error);
@@ -11,6 +13,11 @@ export default function ErrorPage() {
             <p>
                 <i>{error.statusText || error.message}</i>
             </p>
+            <Button>
+                <Link to="/">
+                    Back to Home Page
+                </Link>
+            </Button>
         </ErrorPageContainer>
     )
 }

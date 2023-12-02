@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginPageFormContainer = styled.section`
+export const LoginAndRegisterFormContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@ export const LoginPageFormContainer = styled.section`
     box-sizing: border-box;
     color: rgb(94, 108, 132);
 `;
-export const LoginPageFormTitle = styled.div`
+export const LoginAndRegisterFormTitle = styled.div`
     display: flex;
     flex-direction: column;
     -webkit-box-align: center;
@@ -22,21 +22,26 @@ export const LoginPageFormTitle = styled.div`
     text-align: center;
     margin-bottom: 16px;
 `
-export const LoginPageFormTitleLogo = styled.span`
+export const LoginAndRegisterFormTitleLogo = styled.span`
     height: 40px;
 `
-export const LoginPageFormTitleText = styled.div`
+export const LoginAndRegisterFormTitleText = styled.div`
+    h5{
+        margin:0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: 600;
-    font-size: 24px;
-    height: 56px;
-    color: rgb(23, 43, 77);
+        font-size: 20px;
+        height: 56px;
+        color: rgb(23, 43, 77);
+        line-height: 80px;
+    }
 `
-export const LoginPageFormTag = styled.form`
+export const LoginAndRegisterFormTag = styled.form`
     display: flex;
     flex-direction: column;
     width: 100%;
 `
-export const LoginPageFormInputContainer = styled.div`
+export const LoginAndRegisterFormInputContainer = styled.div`
     -webkit-box-align: center;
     align-items: center;
     background-color: var(--ds-background-input, #FAFBFC);
@@ -59,7 +64,7 @@ export const LoginPageFormInputContainer = styled.div`
     pointer-events: auto;
     border: 0;
 `
-export const LoginPageFormInput = styled.input`
+export const LoginAndRegisterFormInput = styled.input`
     background-color: transparent;
     border: 2px solid var(--ds-border-input, #DFE1E6);
     box-sizing: border-box;
@@ -74,25 +79,25 @@ export const LoginPageFormInput = styled.input`
         border: 2px solid rgb(0, 82, 204);
     }
 `
-export const LoginPageFormTerms = styled.div`
+export const LoginAndRegisterFormTerms = styled.div`
     margin-top: 8px;
     text-align: left;
     padding-left: 0px;
 `
-export const LoginPageFormTermsText = styled.p`
+export const LoginAndRegisterFormTermsText = styled.p`
     font-size: 12px;
     line-height: 16px;
     color: rgb(94, 108, 132);
     margin: 0px;
 `
-export const LoginPageFormLink = styled.a`
+export const LoginAndRegisterFormLink = styled.a`
     color: rgb(0, 82, 204);
     text-decoration: none;
     &:hover {
         text-decoration: underline;
     }
 `
-export const LoginPageFormButton = styled.button`
+export const LoginAndRegisterFormButton = styled.button`
 margin-top: 16px;
     -webkit-box-align: baseline;
     align-items: baseline;
@@ -121,7 +126,7 @@ margin-top: 16px;
     justify-content: center;
     color: var(--ds-text-inverse, #FFFFFF) !important;
 `;
-export const LoginPageFormSwitch = styled.div`
+export const LoginAndRegisterFormSwitch = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +137,7 @@ export const LoginPageFormSwitch = styled.div`
         /* text-decoration: underline; */
     }
 `
-export const LoginPageFormDivider = styled.div`
+export const LoginAndRegisterFormDivider = styled.div`
     height: 1px;
     width: 100%;
     background-color:rgb(107, 119, 140);

@@ -21,7 +21,7 @@ export const LoginContainer = styled.div`
     display: none;
   }
 `;
-export const SignupContainer = styled.a`
+export const SignupContainer = styled.div`
   padding: 1.35rem;
   height: 100%;
   display: flex;

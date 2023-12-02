@@ -1,12 +1,12 @@
 import { LandingPageContainer } from "./LandingPage.styles";
-import MainBody from "../components/MainBody/MainBody";
-import Navigator from "../components/Navigator/Navigator";
+import LandingPageMainBody from "../components/LandingPageMainBody/LandingPageMainBody";
+import LandingPageNavigator from "../components/LandingPageNavigator/LandingPageNavigator";
 
 export default function LandingPage() {
   return (
     <LandingPageContainer>
-      <Navigator/>
-      <MainBody/>
+      <LandingPageNavigator/>
+      <LandingPageMainBody/>
     </LandingPageContainer>
   );
 }

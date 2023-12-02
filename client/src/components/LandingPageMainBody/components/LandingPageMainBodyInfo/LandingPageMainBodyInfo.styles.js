@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainBodyInfoContainer = styled.div`
+export const LandingPageMainBodyInfoContainer = styled.div`
   width:50%;
   display:flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ export const MainBodyInfoContainer = styled.div`
   }
 `;
 
-export const MainBodyInfoTitle = styled.div`
+export const LandingPageMainBodyInfoTitle = styled.div`
   /* font-size: 48px; */
   /* font-weight:500;
   font-family: "Charlie Display", sans-serif; */
@@ -22,7 +22,7 @@ export const MainBodyInfoTitle = styled.div`
   }
   
 `;
-export const MainBodyInfoTitleH2 = styled.h2`
+export const LandingPageMainBodyInfoTitleH2 = styled.h2`
   font-size: 3rem;
   font-weight:500;
   font-family: "Charlie Display", sans-serif;
@@ -35,20 +35,23 @@ export const MainBodyInfoTitleH2 = styled.h2`
   }
 `;
 
-export const MainBodyInfoTitleP = styled.p`
+export const LandingPageMainBodyInfoTitleP = styled.p`
   font-size: 1.2rem;
   font-weight:400;
   font-family: "Charlie Display", sans-serif;
   margin-bottom:1.5rem;
 `;
-export const MainBodyInfoForm = styled.form`
+export const LandingPageMainBodyInfoForm = styled.form`
   display:flex; 
   justify-content:flex-start; 
   align-items:center;
   flex-wrap: wrap;
   margin-bottom: 1rem;
+  @media screen and (max-width: 1024px){
+    justify-content: center;
+  }
   `;
-export const MainBodyInfoInput = styled.input`
+export const LandingPageMainBodyInfoInput = styled.input`
   height: 3rem;
   width: 18rem;
   border-radius: 0.3rem;
@@ -69,7 +72,7 @@ export const MainBodyInfoInput = styled.input`
     display: none;
   }
 `
-export const MainBodyInfoButton = styled.button`
+export const LandingPageMainBodyInfoButton = styled.button`
   height: 3rem;
   width:10rem;
   background-color: rgb(0, 101, 255);
@@ -89,24 +92,26 @@ export const MainBodyInfoButton = styled.button`
     width: 32rem
   }
 `;
-export const MainBodyInfoVideo = styled.div`
+export const LandingPageMainBodyInfoVideo = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-
+@media screen and (max-width: 1024px) {
+  justify-content: center;
+}
 `;
-export const MainBodyInfoVideoText = styled.span`
+export const LandingPageMainBodyInfoVideoText = styled.span`
   font-size: 1rem;
   font-weight: 400;
   font-family: "Charlie Display", sans-serif;
   text-decoration: underline;
   padding-right: 0.5rem;
 `;
-export const MainBodyInfoVideoIcon = styled.div`
+export const LandingPageMainBodyInfoVideoIcon = styled.div`
   display: flex;
   justify-content: center;
-  ${MainBodyInfoVideo}:hover & {
+  ${LandingPageMainBodyInfoVideo}:hover & {
     transform: translateX(0.5rem);
     transition: transform 0.5s ease-in-out;
   }

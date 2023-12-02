@@ -1,6 +1,6 @@
 import styled from "styled-components"; 
 
-export const LoginPageContainer = styled.div`
+export const LoginAndRegisterPageContainer = styled.div`
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@ export const LoginPageContainer = styled.div`
   justify-content: center;
 `
 
-export const LoginPageBackGroundImage = styled.img`
+export const LoginAndRegisterPageBackGroundImage = styled.img`
     width: 100%;
     height: 100%;
     position: absolute;

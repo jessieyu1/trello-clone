@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NavigatorContainer = styled.div`
+export const LandingPageNavigatorContainer = styled.div`
   width:100%;
   display:flex;
   justify-content:space-between;
@@ -8,7 +8,7 @@ export const NavigatorContainer = styled.div`
   max-width: 1320px;
 `;
 
-export const NavigatorRootContainer = styled.div`
+export const LandingPageNavigatorRootContainer = styled.div`
   width:100%;
   height:4rem;
   background-color: #fff;

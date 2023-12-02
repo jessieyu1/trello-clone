@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainBodyImgContainer = styled.div`
+export const LandingPageMainBodyImgContainer = styled.div`
     width:50%;  
     /* position:relative; */
     padding-top: 10rem;
@@ -9,7 +9,7 @@ export const MainBodyImgContainer = styled.div`
     width:70%;
 }
 `;
-export const MainBodyImgImage = styled.img`
+export const LandingPageMainBodyImgImage = styled.img`
     width:100%;
     /* height:100%; */
     object-fit:cover;
