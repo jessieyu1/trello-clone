@@ -1,10 +1,10 @@
 //  generate jwt token / verify jwt token
-
+const UserSchema = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 
 //generate jwt token
-const generateJwtToken=(payload,option)=>{
-  return jwt.sign(payload,process.env.ACCESS_TOKEN_SECRET,option);
+const generateJwtToken=(payload)=>{
+  return jwt.sign(payload,process.env.ACCESS_TOKEN_SECRET,{expiresIn:86400});
 }
 
 //verify jwt token

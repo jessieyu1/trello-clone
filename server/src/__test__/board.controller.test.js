@@ -1,8 +1,8 @@
 //TODO:  add test cases for board controller using jest
-const boardController = require('../controller/boards.controller');
-const boardService = require('../service/board.service');
+const boardController = require('../controller/boards.controllers');
+const boardService = require('../service/board.services');
 
-jest.mock('../service/board.service');
+jest.mock('../service/board.services');
 
 describe('Board Controller', () => {
   afterEach(() => {

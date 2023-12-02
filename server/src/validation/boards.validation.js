@@ -59,7 +59,7 @@ const deleteBoardSchema = Joi.object({
 });
 
 const validateDeleteBoard = (req, res, next) => {
-  const { error } = deleteBoardSchema.validate(req.body);
+  const { error } = deleteBoardSchema.validate({boardId:req.params.boardId});
 
   if (error) {
     return res.status(400).json({ error: error.details[0].message });

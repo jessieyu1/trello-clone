@@ -4,7 +4,7 @@ const {
   deleteBoardService,
   getAllBoardsService,
   getOneBoardService,
- } = require('../service/board.service');
+ } = require('../service/board.services');
 const {
   validateCreateBoard,
   validateGetBoard,

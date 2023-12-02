@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {
   deleteBoard, updateBoard, getBoardById, getAllBoards, createNewBoard
-} = require('../controller/boards.controller');
+} = require('../controller/boards.controllers');
 
 // Board Routes:
 /**
