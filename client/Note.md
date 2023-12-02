@@ -16,6 +16,7 @@ Minimum Viable Product 最小可行化产品
 - 个人设置页面/ 个人主页/ profile page
 - 面板 boards => lists => cards > details 
 
+
 - LandingPage
     - HomePage
         - NavBar
@@ -33,7 +34,13 @@ Minimum Viable Product 最小可行化产品
             - NavBar
                 - DropDownMenu
                 - Logo
-            - DragNDrop 
+            - SubNavBar
+                - BoardTitle
+                - BoardMenu
+            - List[]
+                - List
+                    - Card[]
+                    - AddCard  
     - List
     - Card
 
