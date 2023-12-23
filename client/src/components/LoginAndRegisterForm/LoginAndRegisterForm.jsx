@@ -15,6 +15,7 @@ import {
   LoginAndRegisterFormTag,
 } from "./LoginAndRegisterForm.styles";
 import { LogoIcon, FooterIcon } from "./LoginAndRegisterFormIcon";
+import { Link } from "react-router-dom";
 
 export default function LoginPageForm() {
   const {loginOrSignup,setLoginOrSignup} = useLoginOrSignupStore((state)=>({
@@ -46,8 +47,10 @@ export default function LoginPageForm() {
         </LoginAndRegisterFormTerms>):null}
         <div>
           <LoginAndRegisterFormButton>
+            <Link to="/dashboard" style={{textDecoration:"none",color: "inherit" }}>
             {loginOrSignup==="signup"?<span>Sign up</span>:null}
             {loginOrSignup==="login"?<span>Continue</span>:null}
+            </Link>
           </LoginAndRegisterFormButton>
         </div>
       </LoginAndRegisterFormTag>
